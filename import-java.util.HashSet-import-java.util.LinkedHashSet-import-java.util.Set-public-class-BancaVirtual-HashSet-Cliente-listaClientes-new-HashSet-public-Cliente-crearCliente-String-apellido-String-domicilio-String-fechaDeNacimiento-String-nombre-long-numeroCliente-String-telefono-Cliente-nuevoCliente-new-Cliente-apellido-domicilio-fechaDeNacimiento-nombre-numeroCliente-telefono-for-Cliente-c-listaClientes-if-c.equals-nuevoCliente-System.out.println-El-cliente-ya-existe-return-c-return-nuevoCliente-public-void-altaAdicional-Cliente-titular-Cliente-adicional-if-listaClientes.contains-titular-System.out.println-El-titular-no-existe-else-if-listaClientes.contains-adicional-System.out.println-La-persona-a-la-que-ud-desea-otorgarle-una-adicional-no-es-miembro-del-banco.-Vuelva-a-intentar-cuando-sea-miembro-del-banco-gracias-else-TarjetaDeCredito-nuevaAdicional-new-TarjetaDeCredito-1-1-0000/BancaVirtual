@@ -1,0 +1,36 @@
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+
+public class BancaVirtual {
+
+	HashSet<Cliente> listaClientes = new HashSet<>();
+	
+	public Cliente crearCliente( String apellido, String domicilio, String fechaDeNacimiento, String nombre, long numeroCliente, String telefono ){
+		
+		Cliente nuevoCliente = new Cliente(apellido, domicilio, fechaDeNacimiento, nombre, numeroCliente, telefono);
+		for (Cliente c : listaClientes) {
+			if(c.equals(nuevoCliente)){
+				System.out.println("El cliente ya existe");
+				return c;
+			}
+		}
+		return nuevoCliente;
+	}
+	
+	public void altaAdicional (Cliente titular, Cliente adicional ){
+		if(!listaClientes.contains(titular))
+			System.out.println("El titular no existe");
+		else if(!listaClientes.contains(adicional))
+			System.out.println("La persona a la que ud desea otorgarle una adicional, no es miembro del banco. Vuelva a intentar cuando sea miembro del banco, gracias");
+		else{
+		TarjetaDeCredito nuevaAdicional = new TarjetaDeCredito(1, 1, 0000); // ver como modificar
+		adicional.getTarjetas().add(nuevaAdicional);
+		
+		}
+	}
+
+	
+	
+}
